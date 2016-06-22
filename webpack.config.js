@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
@@ -14,5 +15,15 @@ module.exports = {
     },
     resolve: {
         extensions: ['', '.js', '.ts']
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new webpack.DefinePlugin({
+            app: {
+                environment: JSON.stringify(process.env.APP_ENVIRONMENT || 'development')
+            }
+        })
+    ]
 };
